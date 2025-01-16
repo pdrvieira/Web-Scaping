@@ -1,0 +1,412 @@
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #000000;
+            margin-bottom: 25px;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .file-item {
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .file-item:hover {
+            background-color: #e9ecef;
+        }
+        .dropdown-icon {
+            font-size: 16px;
+            color: #0074D9;
+            transition: transform 0.3s;
+        }
+        .dropdown-icon.up {
+            transform: rotate(180deg);
+        }
+        .dropdown-content {
+            display: none;
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .dropdown-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        .dropdown-content th, .dropdown-content td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .dropdown-content th {
+            background-color: #0074D9;
+            color: white;
+        }
+        .dropdown-content tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .dropdown-content tr:hover {
+            background-color: #e9ecef;
+        }
+        #no-results {
+            display: none;
+            text-align: center;
+            color: #999;
+        }
+    </style>
+    
+    <script>
+        function toggleDropdown(id, iconId) {
+            const dropdown = document.getElementById(id);
+            const icon = document.getElementById(iconId);
+            if (dropdown.style.display === "none" || dropdown.style.display === "") {
+                dropdown.style.display = "block";
+                icon.classList.add("up");
+            } else {
+                dropdown.style.display = "none";
+                icon.classList.remove("up");
+            }
+        }
+
+        function filtrarResultados() {
+            const query = document.getElementById('search-bar').value.toLowerCase();
+            const items = document.getElementsByClassName('file-item');
+            let encontrado = false;
+            for (let item of items) {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    item.style.display = 'flex';
+                    encontrado = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            }
+            document.getElementById('no-results').style.display = encontrado ? 'none' : 'block';
+        }
+    </script>
+    
+    <div class='container'>
+        <h1>Relatório de Patentes</h1>
+        <input type="text" id="search-bar" class="search-bar" onkeyup="filtrarResultados()" placeholder="🔍 Busque por Arquivo, CNPJ ou Resultado...">
+        <p id="no-results">Nenhum resultado encontrado.</p>
+    
+        <div class="file-item" onclick="toggleDropdown('dropdown-0', 'icon-0')">
+            <div>
+                <b>Arquivo:</b> 00000000000191-01.html &nbsp;|&nbsp; <b>CNPJ:</b> 00000000000191 &nbsp;|&nbsp; <b>RESULTADO:</b> 2
+            </div>
+            <div id="icon-0" class="dropdown-icon">▼</div>
+        </div>
+        
+            <div id="dropdown-0" class="dropdown-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NÚMERO DO PEDIDO</th>
+                            <th>Data do Depósito</th>
+                            <th>Título</th>
+                            <th>IPC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            
+                <tr>
+                    <td>BR 10 2018 071855 0</td>
+                    <td>24/10/2018</td>
+                    <td></td>
+                    <td>-</td>
+                </tr>
+                
+                <tr>
+                    <td>BR 20 2014 014852 9</td>
+                    <td>17/06/2014</td>
+                    <td>CONFIGURAÇÃO APLICADA EM TERMINAL DE AUTOATENDIMENTO</td>
+                    <td>E04H 1/12</td>
+                </tr>
+                
+                    </tbody>
+                </table>
+            </div>
+            
+        <div class="file-item" onclick="">
+            <div>
+                <b>Arquivo:</b> 00001180000126-01.html &nbsp;|&nbsp; <b>CNPJ:</b> 00001180000126 &nbsp;|&nbsp; <b>RESULTADO:</b> 0
+            </div>
+            
+        </div>
+        
+        <div class="file-item" onclick="">
+            <div>
+                <b>Arquivo:</b> 00003516000190-01.html &nbsp;|&nbsp; <b>CNPJ:</b> 00003516000190 &nbsp;|&nbsp; <b>RESULTADO:</b> 0
+            </div>
+            
+        </div>
+        
+        <div class="file-item" onclick="">
+            <div>
+                <b>Arquivo:</b> 00005275000118-01.html &nbsp;|&nbsp; <b>CNPJ:</b> 00005275000118 &nbsp;|&nbsp; <b>RESULTADO:</b> 0
+            </div>
+            
+        </div>
+        
+        <div class="file-item" onclick="">
+            <div>
+                <b>Arquivo:</b> 00008354000182-01.html &nbsp;|&nbsp; <b>CNPJ:</b> 00008354000182 &nbsp;|&nbsp; <b>RESULTADO:</b> 0
+            </div>
+            
+        </div>
+        
+        <div class="file-item" onclick="">
+            <div>
+                <b>Arquivo:</b> 00011009000106-01.html &nbsp;|&nbsp; <b>CNPJ:</b> 00011009000106 &nbsp;|&nbsp; <b>RESULTADO:</b> 0
+            </div>
+            
+        </div>
+        
+        <div class="file-item" onclick="toggleDropdown('dropdown-6', 'icon-6')">
+            <div>
+                <b>Arquivo:</b> 00014522000142-01.html &nbsp;|&nbsp; <b>CNPJ:</b> 00014522000142 &nbsp;|&nbsp; <b>RESULTADO:</b> 3
+            </div>
+            <div id="icon-6" class="dropdown-icon">▼</div>
+        </div>
+        
+            <div id="dropdown-6" class="dropdown-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NÚMERO DO PEDIDO</th>
+                            <th>Data do Depósito</th>
+                            <th>Título</th>
+                            <th>IPC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            
+                <tr>
+                    <td>BR 10 2016 025387 0</td>
+                    <td>31/10/2016</td>
+                    <td>PROCESSO APLICADO NA OBTENÇÃO DE UM PRODUTO ESPECÍFICO, ASSIM COMO ELEMENTO RESULTANTE</td>
+                    <td>A61K 8/34</td>
+                </tr>
+                
+                <tr>
+                    <td>BR 10 2015 006845 0</td>
+                    <td>26/03/2015</td>
+                    <td></td>
+                    <td>-</td>
+                </tr>
+                
+                <tr>
+                    <td>BR 10 2013 025581 5</td>
+                    <td>03/10/2013</td>
+                    <td></td>
+                    <td>-</td>
+                </tr>
+                
+                    </tbody>
+                </table>
+            </div>
+            
+        <div class="file-item" onclick="">
+            <div>
+                <b>Arquivo:</b> 00015174000128-01.html &nbsp;|&nbsp; <b>CNPJ:</b> 00015174000128 &nbsp;|&nbsp; <b>RESULTADO:</b> 0
+            </div>
+            
+        </div>
+        
+        <div class="file-item" onclick="">
+            <div>
+                <b>Arquivo:</b> 00020777000118-01.html &nbsp;|&nbsp; <b>CNPJ:</b> 00020777000118 &nbsp;|&nbsp; <b>RESULTADO:</b> 0
+            </div>
+            
+        </div>
+        
+        <div class="file-item" onclick="toggleDropdown('dropdown-9', 'icon-9')">
+            <div>
+                <b>Arquivo:</b> 00028986000108-01.html &nbsp;|&nbsp; <b>CNPJ:</b> 00028986000108 &nbsp;|&nbsp; <b>RESULTADO:</b> 41
+            </div>
+            <div id="icon-9" class="dropdown-icon">▼</div>
+        </div>
+        
+            <div id="dropdown-9" class="dropdown-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NÚMERO DO PEDIDO</th>
+                            <th>Data do Depósito</th>
+                            <th>Título</th>
+                            <th>IPC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            
+                <tr>
+                    <td>PI 0405279-0</td>
+                    <td>29/11/2004</td>
+                    <td>SISTEMA DE ELEVADOR.</td>
+                    <td>B66B 15/08</td>
+                </tr>
+                
+                <tr>
+                    <td>PI 0316297-4</td>
+                    <td>07/11/2003</td>
+                    <td>UNIDADE PARA MONITORAÇÃO DE ELEVADOR E PROCEDIMENTO PARA A MANUTENÇÃO DE UMA UNIDADE DE MONITORAÇÃO DE ELEVADOR.</td>
+                    <td>B66B 13/30</td>
+                </tr>
+                
+                <tr>
+                    <td>PI 0214385-2</td>
+                    <td>20/11/2002</td>
+                    <td>ELEVADOR COM MEIO DE TRANSMISSÃO SEMELHANTE À CORREIA, PARTICULARMENTE, COM CORREIAS DE NERVURAS CÔNICAS, COMO DISPOSITIVO DE SUPORTE E/OU DISPOSITIVO DE ACIONAMENTO.</td>
+                    <td>B66B 7/06</td>
+                </tr>
+                
+                <tr>
+                    <td>PI 0216031-5</td>
+                    <td>20/11/2002</td>
+                    <td>ELEVADOR COM MEIO DE TRANSMISSÃO SEMELHANTE À CORREIA, PARTICULARMENTE, COM CORREIAS DE NERVURAS CÔNICAS, COMO DISPOSITIVO DE SUPORTE E/OU DISPOSITIVO DE ACIONAMENTO.</td>
+                    <td>B66B 7/06</td>
+                </tr>
+                
+                <tr>
+                    <td>PI 9905263-6</td>
+                    <td>30/09/1999</td>
+                    <td>SENSOR DE POSIÇÃO PELA PERMANÊNCIA MAGNÉTICA</td>
+                    <td>G01P 13/00</td>
+                </tr>
+                
+                <tr>
+                    <td>PI 9902157-9</td>
+                    <td>20/05/1999</td>
+                    <td>MECANISMO AUTO CENTRANTE DE CABOS OU CORRENTES DE COMPENSAÇÃO DE INSTALAÇÕES ELEVADORAS</td>
+                    <td>B66B 7/10</td>
+                </tr>
+                
+                <tr>
+                    <td>PI 9902156-0</td>
+                    <td>20/05/1999</td>
+                    <td>INSTALAÇÃO ELEVATÓRIA SEM CASA DE MÁQUINAS</td>
+                    <td>B66B 1/06</td>
+                </tr>
+                
+                <tr>
+                    <td>PI 9805380-9</td>
+                    <td>03/11/1998</td>
+                    <td>SISTEMA DE PROTEÇÃO AO ACESSO DE TRINCOS DE PORTAS DE PAVIMENTOS DE ELEVADORES</td>
+                    <td>B66B 13/14</td>
+                </tr>
+                
+                <tr>
+                    <td>PI 9804426-5</td>
+                    <td>16/10/1998</td>
+                    <td>MÁQUINA ELÉTRICA DE RELUTÂNCIA SUBSÍNCRONA.</td>
+                    <td>H02K 1/06</td>
+                </tr>
+                
+                <tr>
+                    <td>PI 9800745-9</td>
+                    <td>20/02/1998</td>
+                    <td>APERFEIÇOAMENTO EM BARRA DE SUSTENTAÇÃO DE FOLHAS DE PORTA DE CABINAS DE ELEVADORES</td>
+                    <td>B66B 13/06</td>
+                </tr>
+                
+                <tr>
+                    <td>PI 9702630-1</td>
+                    <td>08/08/1997</td>
+                    <td>SISTEMA DE CONTROLE E ACIONAMENTO PARA MÁQUINA DE TRAÇÃO DE ELEVADORES</td>
+                    <td>B66B 1/28</td>
+                </tr>
+                
+                <tr>
+                    <td>PI 9708759-9</td>
+                    <td>18/02/1997</td>
+                    <td>SISTEMA DE CONTROLE PARA VÁRIOS GRUPOS DE ELEVADORES COM CONTROLE DE CHAMADA DIRIGIDA.</td>
+                    <td>B66B 1/20</td>
+                </tr>
+                
+                <tr>
+                    <td>PI 9700226-7</td>
+                    <td>12/02/1997</td>
+                    <td>SISTEMA DE TRAÇÃO DE ELEVADORES COM MÁQUINA SÍNCRONICA DE ALTO DESEMPENHO</td>
+                    <td>H02K 1/22</td>
+                </tr>
+                
+                <tr>
+                    <td>PI 9600407-0</td>
+                    <td>03/01/1996</td>
+                    <td>ELEVADOR PRÉ-FABRICADO DE MULTIUSO</td>
+                    <td>B66B 9/187</td>
+                </tr>
+                
+                <tr>
+                    <td>MU 7500381-3</td>
+                    <td>22/02/1995</td>
+                    <td>DISPOSIÇÀO EM SISTEMA ELETROMECÂNICO PARA FREIO DE MÁQUINA DE ELEVADOR</td>
+                    <td>B66B 5/16</td>
+                </tr>
+                
+                <tr>
+                    <td>MU 7401339-4</td>
+                    <td>22/08/1994</td>
+                    <td>DISPOSIÇÃO CONSTRUTIVA EM TETO INTERNO DE ELEVADOR</td>
+                    <td>B66B 11/02</td>
+                </tr>
+                
+                <tr>
+                    <td>MU 7401340-8</td>
+                    <td>22/08/1994</td>
+                    <td>CORRIMÃO ILUMINADO</td>
+                    <td>E04F 11/18</td>
+                </tr>
+                
+                <tr>
+                    <td>PI 9400880-9</td>
+                    <td>23/03/1994</td>
+                    <td>MÁQUINA ELÉTRICA DE RELUTÂNCIA</td>
+                    <td>H02K 37/02</td>
+                </tr>
+                
+                <tr>
+                    <td>PI 9303533-0</td>
+                    <td>22/09/1993</td>
+                    <td>SENSOR DE POSIÇÃO PARA ELEVADORES</td>
+                    <td>B66B 1/40</td>
+                </tr>
+                
+                <tr>
+                    <td>PI 9204708-4</td>
+                    <td>21/12/1992</td>
+                    <td>DETECTOR E NIVELADOR DE EQUIPAMENTOS DE TRANSPORTE</td>
+                    <td>B66B 1/40</td>
+                </tr>
+                
+                    </tbody>
+                </table>
+            </div>
+            </div>
